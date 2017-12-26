@@ -3,6 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { HttpHeaders } from '@angular/common/http';
+ import { Headers, RequestOptions } from '@angular/http';
+ import { Request, RequestMethod} from '@angular/http';
+ import { HttpClient } from '@angular/common/http';
+
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -12,7 +18,7 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 export class HeaderComponent implements OnInit {
 
 
-  @Input() position = 'normal';
+  @Input() position: string = 'normal';
 
   user: any;
 
@@ -21,12 +27,23 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,
+              private router: Router,
+              private http: HttpClient) {
+      this.user = {
+          name: "",
+          picture: "",
+      }
+      this.user.name = localStorage.getItem("email");
   }
 
   ngOnInit() {
     this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+      .subscribe((users: any) => {
+
+      });
+
+
   }
 
   toggleSidebar(): boolean {
@@ -45,5 +62,11 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  logOut() {
+      localStorage.setItem("token", JSON.stringify(""))
+      localStorage.setItem("email", JSON.stringify(""))
+      this.router.navigate(['/auth/login']);
   }
 }

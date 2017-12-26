@@ -1,4 +1,33 @@
 <div class="row">
+    <div class="col-md-6">
+        <ngx-status-card title="{{ this.charttwo }}" desc="Lives ces derniers 24H" type="success">
+            <i class="nb-audio"></i>
+        </ngx-status-card>
+    </div>
+    <div class="col-md-6">
+        <ngx-status-card title="{{ this.chartone }}" desc="Comptes artiste enregistré" type="warning">
+            <i class="nb-person"></i>
+        </ngx-status-card>
+    </div>
+</div>
+<nb-card>
+    <nb-card-header>Graph Artiste</nb-card-header>
+    <nb-card-body>
+        <ngx-electricity></ngx-electricity>
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>Google Maps</nb-card-header>
+    <nb-card-body>
+        <iframe src="http://92.222.78.82:8080/widget_maps" style="top:0px; left:0px; bottom:0px; right:0px; width:100%; height:400px; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+   Your browser doesn't support iframes
+ </iframe>
+<a href="http://92.222.78.82:8080/widget_maps" target="_blank"><button class="btn btn-primary confirm-btn" style="margin-top:1%;">Plein ecran</button></a>
+    </nb-card-body>
+</nb-card>
+
+<!-- <div class="row">
   <div class="col-xxxl-3 col-md-6">
     <ngx-status-card title="Light" type="primary">
       <i class="nb-lightbulb"></i>
@@ -57,4 +86,4 @@
   <div class="col-xxxl-6 col-xxl-12 col-md-7">
     <ngx-security-cameras></ngx-security-cameras>
   </div>
-</div>
+</div> -->

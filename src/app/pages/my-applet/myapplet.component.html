@@ -1,0 +1,39 @@
+<div class="row">
+    <button _ngcontent-c12="" class="btn btn-hero-primary btn-demo" (click)="addNewApplet()">+ Add new applet</button>
+</div>
+<table class="table table-condense">
+  <tbody>
+    <tr *ngFor="let line of tableInfo; let rowIndex = index;">
+      <td *ngFor="let item of line;">
+        <div class="col-md-12" style="margin-top: 1%; padding-bottom: 10%">
+          <div class="col-md-10" style="align=center;">
+            <div [style.background-color]="item.backcolor" class="applet-card-body">
+              <span class="applet-card-body">
+                <div class="content">
+                  <div class="card-top">
+                    <img title="logo"  style="height: 2em;" src= "{{ item.imageUrl }}">
+                    <span><td style="border-top: 0px;">{{ item.name }}</td></span>
+                    <div class="switch">
+                        <div *ngIf="item.active == true">
+                            <input id="{{ item.enumPlace }}" class="cmn-toggle cmn-toggle-round-flat cmn-toggle-4" type="checkbox" (checked)="toggleTab[item.enumPlace]" (change)="toggleUpdate(item.enumPlace)" checked>
+                            <label for="{{ item.enumPlace }}"></label>
+                        </div>
+                        <div *ngIf="item.active == false">
+                            <input id="{{ item.enumPlace }}" class="cmn-toggle cmn-toggle-round-flat cmn-toggle-4" type="checkbox" (checked)="toggleTab[item.enumPlace]" (change)="toggleUpdate(item.enumPlace)">
+                            <label for="{{ item.enumPlace }}"></label>
+                        </div>
+                    </div>
+                  </div>
+                  <span class="title">
+                    <td>{{ item.description }}</td>
+                  </span>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        </td>
+    </tr>
+  </tbody>
+</table>

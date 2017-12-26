@@ -1,0 +1,51 @@
+<nb-card>
+<nb-card-header>IF ...</nb-card-header>
+    <nb-card-body>
+        Choose a Service :
+        <select _ngcontent-c23="" class="form-control" (change)="changeIfService();this.ifAction = true;" #ifSelect>
+            <option> ... </option>
+            <option *ngFor="let item of ifChoices"> {{ item.name + ' - ' + item.description }}</option>
+        </select>
+        <div *ngIf="this.ifAction == true"><br>
+            Choose an action :
+            <select _ngcontent-c23="" class="form-control" (change)="changeIfAction();this.ifParam = true" #ifSelectAction>
+                <option> ... </option>
+                <option *ngFor="let item of this.currentIf.actions"> {{ item.name + ' - ' + item.description }}</option>
+            </select>
+        </div>
+        <div *ngIf="this.ifParam == true" #ifParamDiv><br>
+            <div *ngFor="let item of this.currentIfActionParam">
+                <input class="form-control" #t (change)="item.value = t.value" placeholder="{{ item.key }}" type="text">
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<div *ngIf="this.ifParam == true">
+<nb-card>
+    <nb-card-header>Then ...</nb-card-header>
+        <nb-card-body>
+            Choose a Service :
+            <select _ngcontent-c23="" class="form-control" (change)="changeThenService();this.thenReaction = true;" #thenSelect>
+                <option> ... </option>
+                <option *ngFor="let item of thenChoices"> {{ item.name + ' - ' + item.description }}</option>
+            </select>
+            <div *ngIf="this.thenReaction == true"><br>
+                Choose an reaction :
+                <select _ngcontent-c23="" class="form-control" (change)="changeThenReaction();this.thenParam = true;" #thenSelectReaction>
+                    <option> ... </option>
+                    <option *ngFor="let item of this.currentThen.reactions"> {{ item.name + ' - ' + item.description }}</option>
+                </select>
+            </div>
+            <div *ngIf="this.thenParam == true" #thenParamDiv><br>
+                <div *ngFor="let item of this.currentThenReactionParam">
+                    <input class="form-control" #t (change)="item.value = t.value" placeholder="{{ item.key }}" type="text">
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>
+
+<div *ngIf="this.thenParam == true">
+    <button _ngcontent-c20="" class="btn btn-success btn-demo" (click)="sendRequest()">Add applet</button>
+</div>

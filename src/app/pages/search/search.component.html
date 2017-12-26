@@ -1,0 +1,68 @@
+<div class= "column">
+
+
+  <div class= "row">
+    <div _ngcontent-c32="" class="col-lg-2"></div>
+    <div _ngcontent-c32="" class="col-lg-7">
+      <nb-card _ngcontent-c32="" _nghost-c22="">
+        <div _ngcontent-c32="" class="input-group">
+          <input _ngcontent-c32="" class="form-control" placeholder="Search modules" type="text" #searchField >
+        </div>
+      </nb-card>
+    </div>
+    <div class= "col-lg-1">
+      <button _ngcontent-c68="" (click)="this.search()" class="btn btn-primary btn-demo">Search</button>
+    </div>
+    <div _ngcontent-c32="" class="col-lg-2"></div>
+  </div>
+
+    <h1 align="center">Services</h1>
+
+    <table class="table table-condensed" style="margin-top:1%">
+      <tbody>
+        <tr *ngFor="let item of tableInfo; let rowIndex = index">
+          <td>
+            <nb-card _ngcontent-c68="" _nghost-c22="">
+              <nb-card-header _ngcontent-c68="">
+                <div class="row" style= "justify-content: space-between">
+                  <div>{{ item.name }}</div>
+                  <div _ngcontent-c12="" class="switch">
+                    <input _ngcontent-c12="" class="cmn-toggle cmn-toggle-round-flat cmn-toggle-4" type="checkbox" id="6">
+                    <label _ngcontent-c12="" for="6"></label>
+                  </div>
+                </div>
+              </nb-card-header>
+              <nb-card-body _ngcontent-c68="">
+                <div class= "row"> {{ item.description }} </div>
+              </nb-card-body>
+            </nb-card>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h1 align="center">Applets</h1>
+    <table class="table table-condensed" style="margin-top:1%">
+        <tbody>
+        <tr *ngFor="let item of tableApplet; let rowIndex = index">
+          <td>
+            <nb-card _ngcontent-c68="" _nghost-c22="">
+              <nb-card-header _ngcontent-c68="">
+                <div class="row" style= "justify-content: space-between">
+                  <div class="col-lg-2">{{ item.name }}</div>
+                  <div _ngcontent-c12="" class="switch">
+                    <input _ngcontent-c12="" class="cmn-toggle cmn-toggle-round-flat cmn-toggle-4" type="checkbox" id="6">
+                    <label _ngcontent-c12="" for="6"></label>
+                  </div>
+                </div>
+              </nb-card-header>
+              <nb-card-body _ngcontent-c68="">
+                <div class= "column"> {{ item.description }} </div>
+              </nb-card-body>
+            </nb-card>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

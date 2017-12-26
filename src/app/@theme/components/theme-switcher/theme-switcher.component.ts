@@ -6,16 +6,7 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 @Component({
   selector: 'ngx-theme-switcher',
   styleUrls: ['./theme-switcher.component.scss'],
-  template: `
-    <label class="theme-switch">
-      <span class="light">Light</span>
-      <div class="switch">
-        <input type="checkbox" [checked]="currentBoolTheme()" (change)="toggleTheme(theme.checked)" #theme>
-        <span class="slider"></span>
-      </div>
-      <span class="cosmic">Cosmic</span>
-    </label>
-  `,
+  template: ``,
 })
 export class ThemeSwitcherComponent implements OnInit {
   theme: NbJSThemeOptions;
@@ -26,10 +17,11 @@ export class ThemeSwitcherComponent implements OnInit {
   ngOnInit() {
     this.themeService.getJsTheme()
       .subscribe((theme: NbJSThemeOptions) => this.theme = theme);
+      this.toggleTheme(false);
   }
 
   toggleTheme(theme: boolean) {
-    const boolTheme = this.boolToTheme(theme);
+    const boolTheme = this.boolToTheme(false);
     this.themeService.changeTheme(boolTheme);
     this.analyticsService.trackEvent('switchTheme');
   }

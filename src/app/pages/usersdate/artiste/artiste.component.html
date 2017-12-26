@@ -1,0 +1,198 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+        <nb-card-header>Avis signalé</nb-card-header>
+        <nb-card-body>
+      <table>
+        <tr>
+          <th *ngFor="let item of firstSearchArray">
+              <select _ngcontent-ast-79="" class="form-control" id="filter{{item.id}}" #t (change)="item.filter = t.value;callType(item)">
+                <option _ngcontent-ast-79="" value="{{filter}}" *ngFor="let filter of filterArray" [value]="filter"> {{filter}} </option>
+              </select>
+          </th>
+          <th *ngFor="let item of searchArray">
+            <select _ngcontent-ast-79="" class="form-control" id="filter{{item.id}}" #t (change)="item.filter = t.value;callType(item)">
+              <option _ngcontent-ast-79="" value="{{filter}}" *ngFor="let filter of filterArray" [value]="filter"> {{filter}} </option>
+            </select>
+          </th>
+        </tr>
+        <tr>
+          <td *ngFor="let item of firstSearchArray">
+            <input class="form-control" id="input{{item.id}}" placeholder="Text" type="text" #t (change)="item.search = t.value;callType(item)">
+          </td>
+          <td *ngFor="let item of searchArray">
+            <input class="form-control" id="input{{item.id}}" placeholder="Text" type="text" #t (change)="item.search = t.value;callType(item)">
+          </td>
+        </tr>
+      </table>
+      <button ngClass="{status-button btn btn-xs btn-success }}" (click)="addFilter();" >+</button>
+      <button ngClass="{status-button btn btn-xs btn-deletecstm }}" (click)="removeFilter();" >-</button>
+      <button ngClass="{status-button btn btn-xs btn-warning }}" (click)="reload();" >Supprimer les filtres</button>
+      <br>
+      <button ngClass="{status-button btn btn-xs btn-warning }}" (click)="search();" > <div class="fa-lg withFolder48"><i class="fa fa-search"></i></div> Rechercher </button>
+      <br>
+      <table class="table table-condensed" >
+        <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Infos</th>
+          <th>Live! Points</th>
+          <th>Image Profil</th>
+          <th>Image Back</th>
+          <th>Bannir</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of artiste">
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>    <button ngClass="{ status-button btn btn-xs btn-info }}" (click)="showArtist(item);addLive.artistId = item._id;" ><i class="fa fa-user" aria-hidden="true"></i></button></td>
+          <td>
+            <div *ngIf="item.credit_live > 9999">
+              ∞
+            </div>
+            <div *ngIf="item.credit_live < 9999">
+            {{ item.credit_live }}
+              <button ngClass="{status-button btn btn-xs btn-success }}" (click)="addLiveShow();this.currentPic = item.profil;addLive.artistId = item._id;">+</button>
+            </div>
+          </td>
+          <td>
+            <button ngClass="{status-button btn btn-xs btn-warning }}" (click)="this.currentPic = item.profil;showPictureShow();">Voir</button>
+            <button ngClass="{status-button btn btn-xs btn-deletecstm }}" (click)="dlModal.show();this.currentPic = item.profil;addLive.picToRemove = 1;addLive.artistId = item._id;">X</button>
+          </td>
+          <td>
+            <button ngClass="{status-button btn btn-xs btn-warning }}" (click)="this.currentPic = item.profil;showPictureShow();">Voir</button>
+            <button ngClass="{status-button btn btn-xs btn-deletecstm }}" (click)="dlModal.show();this.currentPic = item.profil;addLive.picToRemove = 2;addLive.artistId = item._id;">X</button>
+          </td>
+          <td>
+              <div *ngIf="item.banned != true">
+                <button ngClass="{status-button btn btn-xs btn-deletecstm }}" (click)="this.addLive.name = item.name;this.addLive.artistId = item._id;banArtisteShow();"> <div class="fa-lg withFolder48"><i class="fa fa-ban"></i></div></button>
+              </div>
+              <div *ngIf="item.banned == true">
+                <button ngClass="{status-button btn btn-xs btn-success }}"> <div class="fa-lg withFolder48"><i class="fa fa-check"></i></div></button>
+              </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button ngClass="{status-button btn btn-xs btn-warning }}" (click)="this.download()">Exporter en CSV</button>
+  </nb-card-body>
+  </nb-card>
+  </div>
+
+</div>
+
+<!-- <div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="smModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Image</h4>
+      </div>
+      <div class="modal-body">
+        <td *ngIf="this.currentPic != undefined ">
+          <img src="{{ this.currentPic }}" style="width:200px">
+        </td>
+        <td *ngIf="this.currentPic == undefined ">
+          Pas d'image pour cet(te) artiste.
+        </td>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary confirm-btn" (click)="smModal.hide()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #dlModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="dlModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <td *ngIf="this.currentPic != undefined ">
+          <img src="{{ this.currentPic }}" style="width:200px">
+          <br><br>
+          Êtes vous sur de vouloir supprimer cette image ?
+        </td>
+        <td *ngIf="this.currentPic == undefined ">
+          Pas d'image pour cet(te) artiste, vous ne pouvez rien supprimer.
+        </td>
+      </div>
+      <div class="modal-footer">
+        <td *ngIf="this.currentPic != undefined ">
+            <button class="btn btn-primary danger-btn" (click)="dlModal.hide();removePic();">Oui</button>
+            <button class="btn btn-primary confirm-btn" (click)="dlModal.hide()">Non</button>
+        </td>
+        <td *ngIf="this.currentPic == undefined ">
+            <button class="btn btn-primary confirm-btn" (click)="dlModal.hide()">Ok</button>
+        </td>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #addModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="addModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Ajout de Live!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="form-group has-success">
+            <input class="form-control" id="inputSuccess1" style=" color: #7D7D7D" type="number" min="1" step="1" #t (change)="addLive.nombre = t.value;callType(addLive)">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+            <button class="btn btn-primary danger-btn" (click)="addModal.hide();addLiveRequest()">Ajouter</button>
+            <button class="btn btn-primary confirm-btn" (click)="addModal.hide()">Quitter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #banModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="banModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Bannissement d'artiste</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="form-group has-success">
+            Êtes-vous sûr de vouloir bannir (cette mesure est définitive) : " {{ addLive.name }} " ?
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+            <button class="btn btn-primary danger-btn" (click)="banModal.hide();banArtist();">Oui</button>
+            <button class="btn btn-primary confirm-btn" (click)="banModal.hide()">Non</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<style>
+
+.btn-deletecstm, .btn-deletecstm:hover, .btn-deletecstm:active, .btn-deletecstm:visited {
+  background-color: #96281B !important;
+  color:white;
+}
+
+</style>

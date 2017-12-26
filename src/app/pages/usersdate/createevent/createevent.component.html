@@ -1,0 +1,25 @@
+<nb-card>
+    <nb-card-header>Créer un évenement</nb-card-header>
+    <nb-card-body _ngcontent-c24="">
+        <br>
+        <h3>Groupe :</h3>
+            <input auto-complete [(ngModel)]="SelectArtist" [source]="ArtistesGroupName" (valueChanged)="doChange()" />
+        <br>
+        <h3>Date :</h3>
+        <div _ngcontent-c24="" class="datepicker-container">
+         <ng-datepicker [(ngModel)]="date" class="form-control" placeholder="Date" (click)="openDatePicker();" (valueChanged)="changeDate()" type="text"></ng-datepicker>
+        </div>
+        <br>
+        <h3>Heure :</h3>
+          <input _ngcontent-c24="" class="form-control" placeholder="Heure" type="time" #hour>
+
+        <br>
+        <h3>Lieu :</h3>
+        <ng4geo-autocomplete (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
+        <br>
+        <br>
+        <br><br>
+        <br><br>
+        <button _ngcontent-c12="" class="btn btn-hero-success btn-demo" (click)="createEvent()">Créer</button>
+     </nb-card-body>
+</nb-card>

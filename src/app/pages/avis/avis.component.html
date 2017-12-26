@@ -1,0 +1,130 @@
+  <nb-card>
+  <nb-card-header>Avis signalé</nb-card-header>
+  <nb-card-body>
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <th class="table-id">#</th>
+          <th>Titre</th>
+          <th>Contenu</th>
+          <th>Pseudo</th>
+          <th>Image</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Selectionner</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of waitingForReview">
+          <td class="table-id">{{ item.id + 1}}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.content }}</td>
+          <td>{{ item.pseudo }}</td>
+          <td><a href="http://92.222.78.82:8080/{{ item.imageUrl }} " target="_blank">Lien</a></td>
+          <td>{{ item.date }}</td>
+          <td>
+            <button ngClass="{status-button btn btn-xs btn-warning }}">{{ item.status }}</button>
+          </td>
+          <td><input type="checkbox" [checked]=item.selected value="{{ item.selected }}" (click)="setSelect( item )"></td>
+        </tr>
+        </tbody>
+      </table>
+      <br>
+      <button class="btn btn-primary btn-raised" name="del-avis" type="button" (click)="delAvisShow()">Supprimer</button>
+      <button class="btn btn-warning btn-raised" type="button" (click)="unsignalShow()">Désignaler</button>
+  </nb-card-body>
+
+
+
+</nb-card>
+  <!-- <div class="col-md-12">
+    <ba-card title="Avis" baCardClass="with-scroll">
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <th class="table-id">#</th>
+          <th>Titre</th>
+          <th>Contenu</th>
+          <th>Psuedo</th>
+          <th>Image</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of peopleTableData">
+          <td class="table-id">{{ item.id }}</td>
+          <td>{{ item.firstName }}</td>
+          <td>{{ item.lastName }}</td>
+          <td>{{ item.username }}</td>
+          <td><a class="email-link" href="mailto:{{ item.email }}">{{ item.email }}</a></td>
+          <td>{{ "29/11/1997" }}</td>
+          <td>
+            <button ngClass="{status-button btn btn-xs btn-warning">{{ item.status }}</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </ba-card>
+  </div> -->
+
+<!--
+<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="smModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <td *ngIf="this.getReportedArray() !== 0">
+        Êtes-vous sûr de vouloir supprimer {{ this.getReportedArray() }} avis ?
+        </td>
+        <td *ngIf="this.getReportedArray() === 0">
+        Vous devez selectionner au minimum un avis.
+        </td>
+      </div>
+      <div class="modal-footer">
+        <td *ngIf="this.getReportedArray() !== 0">
+          <button class="btn btn-primary confirm-btn" (click)="this.delete();smModal.hide()">Oui</button>
+          <button class="btn btn-danger confirm-btn" (click)="smModal.hide()">Non</button>
+        </td>
+        <td *ngIf="this.getReportedArray() === 0">
+          <button class="btn btn-primary confirm-btn" (click)="smModal.hide()">Ok</button>
+        </td>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #dmModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="dmModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <td *ngIf="this.getReportedArray() !== 0">
+        Êtes-vous sûr de vouloir désignaler {{ this.getReportedArray() }} avis ?
+        </td>
+        <td *ngIf="this.getReportedArray() === 0">
+        Vous devez selectionner au minimum un avis.
+        </td>
+      </div>
+      <div class="modal-footer">
+        <td *ngIf="this.getReportedArray() !== 0">
+          <button class="btn btn-primary confirm-btn" (click)="this.unReport();dmModal.hide();">Oui</button>
+          <button class="btn btn-danger confirm-btn" (click)="dmModal.hide()">Non</button>
+        </td>
+        <td *ngIf="this.getReportedArray() === 0">
+          <button class="btn btn-primary confirm-btn" (click)="dmModal.hide()">Ok</button>
+        </td>
+      </div>
+    </div>
+  </div> -->
+<!-- </div> -->

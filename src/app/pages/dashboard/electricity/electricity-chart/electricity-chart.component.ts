@@ -17,16 +17,25 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
   themeSubscription: any;
 
   constructor(private theme: NbThemeService) {
+      var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
 
-    const points = [490, 490, 495, 500, 505, 510, 520, 530, 550, 580, 630,
-      720, 800, 840, 860, 870, 870, 860, 840, 800, 720, 200, 145, 130, 130,
-      145, 200, 570, 635, 660, 670, 670, 660, 630, 580, 460, 380, 350, 340,
-      340, 340, 340, 340, 340, 340, 340, 340];
-
+      var finaly = [];
+var tmp = localStorage.getItem('date_length');
+var date_len = parseInt(tmp, 10);
+for (var i = 0; i < date_len; i += 4) {
+  finaly.push({
+    date: new Date(localStorage.getItem('date_' + String(i))),
+    value: parseInt(localStorage.getItem('value_' + String(i)), 10)
+  })
+}
     // const points = [];
     // let pointsCount = 100;
     // let min = -3;
     // let max = 3;
+
+
     // let xStep = (max - min) / pointsCount;
     //
     // for(let x = -3; x <= 3; x += xStep) {
@@ -34,9 +43,9 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
     //   points.push(Math.round(res * 25));
     // }
 
-    this.data = points.map((p, index) => ({
-      label: (index % 5 === 3) ? `${Math.round(index / 5)}` : '',
-      value: p,
+    this.data = finaly.map((p, index) => ({
+      label: monthShortNames[p.date.getMonth()],
+      value: p.value,
     }));
   }
 
@@ -69,7 +78,7 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
             backgroundColor: eTheme.tooltipBg,
             borderColor: eTheme.tooltipBorderColor,
             borderWidth: 3,
-            formatter: '{c0} kWh',
+            formatter: '{c0} inscrit(s)',
             extraCssText: eTheme.tooltipExtraCss,
           },
           xAxis: {

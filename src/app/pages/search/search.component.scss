@@ -1,0 +1,275 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+
+@include nb-install-component() {
+  .solar-card nb-card-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    ngx-traffic {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    /deep/ nb-card.large-card {
+      height: nb-theme(card-height-medium);
+    }
+  }
+}
+
+.web-applet-cards {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: wrap;
+    -moz-flex-flow: wrap;
+    -ms-flex-flow: wrap;
+    flex-flow: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(54em + 1.5em);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.web-applet-card{
+      display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    width: 25em;
+    height: 15em;
+    padding: .5em;
+    text-align: left;
+}
+
+.applet-card-body{
+      display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: .5em;
+    width: 100%;
+    color: white;
+      text-decoration: none;
+}
+
+.author a b{
+  text-decoration: underline;
+  color: #fff;
+}
+
+.content {
+      display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 1.5em;
+}
+
+.card-top {
+      display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.owner-logo{
+/*       width: 50px; */
+    max-height: 50px;
+}
+
+.title {
+      display: block;
+    margin: .625em 0;
+    font-size: 1.5em;
+     font-weight: 400;
+    line-height: 1.125;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+.web-applet-card .author {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 0;
+    color: rgba(255,255,255,0.6);
+    font-size: .875em;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.web-applet-card .author b {
+    color: #fff;
+}
+
+.web-applet-card .meta {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-weight: 600;
+    padding: .75em 1.5em;
+    background: rgba(0,0,0,0.2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.web-applet-card .meta .installs, .web-applet-card .meta .works-with, .web-applet-card .meta .permissions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+}
+
+.web-applet-card .meta .works-with {
+    margin-left: auto;
+}
+
+.web-applet-card .meta .installs, .web-applet-card .meta .works-with, .web-applet-card .meta .permissions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.web-applet-card .meta .permissions li {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 10px;
+}
+
+.author b {
+  text-decoration: underline
+}
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-toggle-round-flat + label {
+  padding: 2px;
+  width: 60px;
+  height: 30px;
+  background-color: #dddddd;
+  border-radius: 30px;
+  transition: background 0.4s;
+}
+input.cmn-toggle-round-flat + label:before,
+input.cmn-toggle-round-flat + label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+input.cmn-toggle-round-flat + label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #fff;
+  border-radius: 30px;
+  transition: background 0.4s;
+}
+input.cmn-toggle-round-flat + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 26px;
+  background-color: #dddddd;
+  border-radius: 26px;
+  transition: margin 0.4s, background 0.4s;
+}
+input.cmn-toggle-round-flat:checked + label {
+  background-color: #8ce196;
+}
+input.cmn-toggle-round-flat:checked + label:after {
+  margin-left: 30px;
+  background-color: #8ce196;
+}
